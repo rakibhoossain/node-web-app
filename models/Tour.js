@@ -79,7 +79,16 @@ const tourseScema = new mongoose.Schema(
       default: false
     }
 
-  });
+  },
+  {
+    toJSON: {virtuals: true},
+    toObject: {virtuals: true}
+  }
+);
+
+tourseScema.virtual('durationWeeks').get(function() {
+  return this.duration / 7;
+});
 
 
 

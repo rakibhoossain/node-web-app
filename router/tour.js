@@ -13,6 +13,8 @@ const router = express.Router()
 
 
 router.get('/top5',tourController.gettop5TourMidw, tourController.getAllTour)
+router.get('/tour-states',tourController.getTourStats)
+router.get('/tour-plan/:year',tourController.getMonthlyPlan)
 
 router
     .route('/')
