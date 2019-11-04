@@ -1,19 +1,15 @@
 const express = require('express');
+var bodyParser = require('body-parser');
 const app = express();
 
 
-const router = require('./router')
-
-// invoked for any requests passed to this router
-router.use(function (req, res, next) {
-  
-  console.log('hello g mid ');
-
-  next()
-})
+const tourRouter = require('./router/tour')
 
 
-app.use(router)
+app.use(express.json());
+// app.use(bodyParser.json());
+
+app.use(tourRouter)
 // app.use('/',router)
 
 
