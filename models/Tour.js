@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 //scema
 const tourseScema = new mongoose.Schema(
@@ -88,6 +89,25 @@ const tourseScema = new mongoose.Schema(
 
 tourseScema.virtual('durationWeeks').get(function() {
   return this.duration / 7;
+});
+
+
+tourseScema.pre('save', function(next){
+  this.slug = slugify(this.name);
+  next();
+});
+
+
+// tourSchema.post('save', function(doc, next) {
+//   console.log(doc);
+//   next();
+// });
+
+
+// AGGREGATION MIDDLEWARE
+tourseScema.pre('aggregate', function(next) {
+  this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+  next();
 });
 
 

@@ -134,7 +134,7 @@ exports.getTourStats = async (req,res)=>{
         ]);
         res.status(200).json({
             status: 'success',
-            data: stats
+            stats
         })
     } catch(err){
 
@@ -179,21 +179,11 @@ exports.getMonthlyPlan = async (req,res)=>{
             {
                 $sort: {total: -1}
             }
-            
-            // { 
-            //     $group: {
-            //         _id: '$difficulty', 
-            //         items: {$sum: 1},
-            //         avgRating: { $avg: "$ratingsAverage" },
-            //         avgPrice: { $avg: "$price" },
-            //         maxRating: { $max: "$price" },
-            //         minRating: { $min: "$price" }
-            //     } 
-            // }
         ]);
+
         res.status(200).json({
             status: 'success',
-            data: plan
+            plan
         })
     } catch(err){
 
